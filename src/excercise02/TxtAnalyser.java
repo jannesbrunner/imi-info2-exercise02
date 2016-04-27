@@ -22,10 +22,14 @@ public class TxtAnalyser {
 	public void readFile() throws IOException{
 		fr = new FileReader("file.txt");
 		br = new BufferedReader(fr);
-		br.read(charArray);
-		for(char test : charArray){
+		Integer[] charry;
+		int line = 0;
+		while((line = br.read()) != -1) {
+			char test = (char) line;
 			System.out.println(test);
 		}
+
+		
 	}
 	
 	public static void main(String[] args) throws IOException {
