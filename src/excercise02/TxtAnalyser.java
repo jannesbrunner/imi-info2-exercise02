@@ -40,7 +40,7 @@ public class TxtAnalyser {
 		while ((line = br.read()) != -1) {
 			char actualChar = (char) line;
 			output += actualChar;
-			if (actualChar < 33 && actualChar > 132){
+			if (actualChar > 33 && actualChar < 132){
 				charArrayList.add(actualChar);
 			}
 		}
@@ -64,10 +64,18 @@ public class TxtAnalyser {
 			statistic[toAdd] += 1;
 		}
 		for (int i = 0; i < statistic.length; i++){
-		    char temp = (char) (i + 32);
-			System.out.println(temp + ":" + statistic[i]);
+		    
+			char temp = (char) (i + 32);
+			String tempString = "";
+			for (int count = 0; count < statistic[i]; count++){
+				tempString += "#";
+			}
+			System.out.println(temp + ":" + statistic[i] + tempString);
+			
 		}
 	}
+	
+	
 	
 
 }
