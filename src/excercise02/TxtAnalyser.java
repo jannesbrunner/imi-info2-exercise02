@@ -21,8 +21,10 @@ public class TxtAnalyser {
 	String outputnative;
 	String outputstatistics;
 	int[] statistic;
+	int highest;
 
 	public TxtAnalyser() throws IOException {
+		highest = 0;
 		statistic = new int[94];
 		outputnative = "";
 		charArrayList = new ArrayList<Character>();
@@ -30,6 +32,7 @@ public class TxtAnalyser {
 		analysis();
 		output();
 		fileoutput();
+		horizontal();
 	
 
 	}
@@ -61,6 +64,38 @@ public class TxtAnalyser {
 		System.out.println(outputstatistics);
 		System.out.println(charArrayList.toString());
 	}
+	
+	public void horizontal(){
+		 
+		int x = statistic.length;
+		
+		int[] data = statistic;
+		System.out.println();
+		System.out.println("Vertical statistic for your input: \n");
+		for(int y = highest; y > 0; y--){
+			
+			String line = "";
+			for(int c = 0; x > c; c++){
+				
+				if (data[c] >= y){
+					line += "|";
+				}
+				else {
+					line += " ";
+					
+				}
+			}
+		System.out.println(line);
+		}
+		String scala = "";
+		for (int i = 0; i < statistic.length; i++){
+			char temp = (char) (i + 32);
+			scala += temp;
+			
+		}
+		System.out.println(scala);
+		
+	}
 
 	public void analysis() {
 
@@ -70,14 +105,18 @@ public class TxtAnalyser {
 			statistic[toAdd] += 1;
 		}
 		String nl = System.getProperty("line.seperator");
-		this.outputstatistics = "\n Statistic for your input: \n";
+		this.outputstatistics = "Vertical statistic for your input: \n\n";
 		for (int i = 0; i < statistic.length; i++) {
 
 			char temp = (char) (i + 32);
 			String tempString = "";
 			
 			for (int count = 0; count < statistic[i]; count++) {
-				tempString += "#";
+				tempString += "-";
+			}
+			
+			if(statistic[i] > highest){
+				highest = statistic[i];
 			}
 			
 			this.outputstatistics += (temp + ":" + statistic[i] + tempString +"\n");
