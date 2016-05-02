@@ -42,10 +42,10 @@ public class TxtAnalyser {
 
 		br = new BufferedReader(fr);
 
-		int line = 0;
+		int currentChar = 0;
 
-		while ((line = br.read()) != -1) {
-			char actualChar = (char) line;
+		while ((currentChar = br.read()) != -1) {
+			char actualChar = (char) currentChar;
 			outputnative += actualChar;
 			if (actualChar > 32 && actualChar < 132 ) {
 				charArrayList.add(actualChar);
@@ -91,6 +91,7 @@ public class TxtAnalyser {
 		horizontal += "\n";
 		
 		}
+		
 		String scala = "";
 		for (int i = 0; i < statistic.length; i++){
 			char temp = (char) (i + 32);
@@ -102,7 +103,7 @@ public class TxtAnalyser {
 		System.out.println(horizontalData);
 		
 	}
-
+	
 	public void analysis() {
 
 		for (char toAnalyse : charArrayList) {
