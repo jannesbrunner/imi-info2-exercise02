@@ -18,12 +18,14 @@ public class TxtAnalyser {
 	String outputstatistics;
 	int[] statistic;
 	int highest;
+	int highest2;
 	String filename;
 	String horizontalData;
 
 	public TxtAnalyser(String filename) throws IOException {
 		this.filename = filename;
 		highest = 0;
+		highest2 = 0;
 		statistic = new int[223];
 		outputnative = "";
 		charArrayList = new ArrayList<Character>();
@@ -70,7 +72,8 @@ public class TxtAnalyser {
 	
 	public void horizontal(){
 		 
-		int x = statistic.length;
+		int x = statistic.length - statistic.length/2;
+		int length = statistic.length;
 		
 		int[] data = statistic;
 		String horizontal = "";
@@ -93,13 +96,42 @@ public class TxtAnalyser {
 		}
 		
 		String scala = "";
-		for (int i = 0; i < statistic.length; i++){
+		for (int i = 0; i < x; i++){
 			char temp = (char) (i + 32);
 			scala += temp;
 			
 		}
 		
-		horizontalData = horizontal + scala; 
+		
+		String horizontal2 = "";
+		for(int y = highest2; y > 0; y--){
+			
+			for(int c = 129; c <= length-1; c++){
+				
+				int index = c;
+				if (data[index] >= y){
+					horizontal2 += "|";
+				}
+				else {
+					horizontal2 += " ";
+					
+				}
+				index += c;
+				
+			}
+			
+		horizontal2 += "\n";
+		
+		}
+		
+		String scala2 = "";
+		for (int i = x; i < statistic.length; i++){
+			char temp = (char) (i + 32);
+			scala2 += temp;
+			
+		}
+		
+		horizontalData = horizontal + scala + "\n" + horizontal2 + scala2; 
 		System.out.println(horizontalData);
 		
 	}
@@ -110,6 +142,7 @@ public class TxtAnalyser {
 
 			int toAdd = (int) toAnalyse - 32;
 			statistic[toAdd] += 1;
+			
 		}
 		String nl = System.getProperty("line.seperator");
 		this.outputstatistics = "Vertical statistic for your input: \n\n";
@@ -122,8 +155,11 @@ public class TxtAnalyser {
 				tempString += "-";
 			}
 			
-			if(statistic[i] > highest){
+			if(i < 127 && statistic[i] > highest){
 				highest = statistic[i];
+			}
+			if(i >= 127 && statistic[i] > highest2){
+				highest2 = statistic[i];
 			}
 			
 			this.outputstatistics += (temp + ":" + statistic[i] + tempString +"\n");
