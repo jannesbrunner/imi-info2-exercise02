@@ -2,14 +2,15 @@ Input was:
 
 Hallo Eli
 Hallo Jay
-K�nnt ihr mich lesen?
+Könnt ihr mich lesen?
 1234567890
 ABCDEFGHJIKLMNOPQRSTUVWXZ
 asdf
 
 
 
-Hallo Eric! Wie geht�s dir?
+Hallo Eric! Wie geht's dir?
+
 Vertical statistic for your input: 
 
  :9---------
@@ -19,7 +20,7 @@ Vertical statistic for your input:
 $:0
 %:0
 &:0
-':0
+':1-
 (:0
 ):0
 *:0
@@ -226,7 +227,7 @@ z:0
 ó:0
 ô:0
 õ:0
-ö:0
+ö:1-
 ÷:0
 ø:0
 ù:0
@@ -244,5 +245,5 @@ z:0
 |                                       |                        |   |   |  |                                                                                                                                                  
 |                                    |  |                        |   |  ||  | ||  ||                                                                                                                                           
 |                              |     |  | ||           |         | |||  ||  | ||  |||                                                                                                                                          
-||              ||||||||||     | |||||||||||||||||||||||| |      | |||||||  ||||  |||    |                                                                                                                                     
+||     |        ||||||||||     | |||||||||||||||||||||||| |      | |||||||  ||||  |||    |                                                                                                                            |        
  !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþ
