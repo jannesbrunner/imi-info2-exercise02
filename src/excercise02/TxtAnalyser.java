@@ -24,7 +24,7 @@ public class TxtAnalyser {
 	public TxtAnalyser(String filename) throws IOException {
 		this.filename = filename;
 		highest = 0;
-		statistic = new int[94];
+		statistic = new int[223];
 		outputnative = "";
 		charArrayList = new ArrayList<Character>();
 		readFile(filename);
@@ -47,7 +47,7 @@ public class TxtAnalyser {
 		while ((currentChar = br.read()) != -1) {
 			char actualChar = (char) currentChar;
 			outputnative += actualChar;
-			if (actualChar > 32 && actualChar < 132 ) {
+			if (actualChar >= 32 && actualChar <= 255 ) {
 				charArrayList.add(actualChar);
 			}
 		}
@@ -108,7 +108,7 @@ public class TxtAnalyser {
 
 		for (char toAnalyse : charArrayList) {
 
-			int toAdd = (int) toAnalyse - 33;
+			int toAdd = (int) toAnalyse - 32;
 			statistic[toAdd] += 1;
 		}
 		String nl = System.getProperty("line.seperator");
