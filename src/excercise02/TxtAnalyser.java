@@ -1,7 +1,3 @@
-
-/**
- * 
- */
 package excercise02;
 
 import java.io.*;
@@ -22,24 +18,28 @@ public class TxtAnalyser {
 	String outputstatistics;
 	int[] statistic;
 	int highest;
+	String filename;
+	String horizontalData;
 
-	public TxtAnalyser() throws IOException {
+	public TxtAnalyser(String filename) throws IOException {
+		this.filename = filename;
 		highest = 0;
 		statistic = new int[94];
 		outputnative = "";
 		charArrayList = new ArrayList<Character>();
-		readFile();
+		readFile(filename);
 		analysis();
 		output();
 		fileoutput();
-		horizontal();
+		
 	
 
 	}
 
-	public void readFile() throws IOException {
+	public void readFile(String filename) throws IOException {
 
-		fr = new FileReader("file.txt");
+		fr = new FileReader(filename);
+
 		br = new BufferedReader(fr);
 
 		int line = 0;
@@ -47,7 +47,7 @@ public class TxtAnalyser {
 		while ((line = br.read()) != -1) {
 			char actualChar = (char) line;
 			outputnative += actualChar;
-			if (actualChar > 33 && actualChar < 132 ) {
+			if (actualChar > 32 && actualChar < 132 ) {
 				charArrayList.add(actualChar);
 			}
 		}
@@ -55,14 +55,17 @@ public class TxtAnalyser {
 	}
 
 	public static void main(String[] args) throws IOException {
-		new TxtAnalyser();
+		new TxtAnalyser(args[0]);
 	}
 
 	public void output() {
+	
 		System.out.println("Input text:");
+		System.out.println();
 		System.out.println(outputnative);
 		System.out.println(outputstatistics);
-		System.out.println(charArrayList.toString());
+		horizontal();
+		
 	}
 	
 	public void horizontal(){
@@ -70,22 +73,23 @@ public class TxtAnalyser {
 		int x = statistic.length;
 		
 		int[] data = statistic;
-		System.out.println();
+		String horizontal = "";
 		System.out.println("Vertical statistic for your input: \n");
 		for(int y = highest; y > 0; y--){
 			
-			String line = "";
 			for(int c = 0; x > c; c++){
 				
 				if (data[c] >= y){
-					line += "|";
+					horizontal += "|";
 				}
 				else {
-					line += " ";
+					horizontal += " ";
 					
 				}
 			}
-		System.out.println(line);
+			
+		horizontal += "\n";
+		
 		}
 		String scala = "";
 		for (int i = 0; i < statistic.length; i++){
@@ -93,7 +97,9 @@ public class TxtAnalyser {
 			scala += temp;
 			
 		}
-		System.out.println(scala);
+		
+		horizontalData = horizontal + scala; 
+		System.out.println(horizontalData);
 		
 	}
 
@@ -134,6 +140,8 @@ public class TxtAnalyser {
 		bw.write(outputnative);
 		bw.newLine();
 		bw.write(outputstatistics);
+		bw.newLine();
+		bw.write(horizontalData);
 		
 		bw.close();
 	}
